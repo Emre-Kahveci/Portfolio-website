@@ -6,7 +6,7 @@ import { useInView } from "framer-motion";
 import { useRef, useState, FormEvent } from "react";
 
 // Replace with your actual Formspree form ID
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xqekljwv";
 
 const socialLinks = [
     {
