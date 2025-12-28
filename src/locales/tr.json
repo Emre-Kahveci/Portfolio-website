@@ -1,0 +1,69 @@
+{
+    "nav": {
+        "home": "Ana Sayfa",
+        "about": "Hakkımda",
+        "projects": "Projeler",
+        "skills": "Yetenekler",
+        "contact": "İletişim"
+    },
+    "hero": {
+        "greeting": "Merhaba, ben",
+        "name": "Emre Kahveci",
+        "title": "Full Stack Geliştirici",
+        "subtitle": "Modern teknolojilerle zarif çözümler üretiyorum. .NET, Python, Makine Öğrenimi ve yenilikçi uygulamalar geliştirme konusunda uzmanım.",
+        "cta": {
+            "projects": "Projeleri Gör",
+            "contact": "İletişime Geç"
+        },
+        "scroll": "Keşfetmek için kaydır"
+    },
+    "about": {
+        "title": "Hakkımda",
+        "subtitle": "Etkili yazılım çözümleri üretme tutkusuyla",
+        "description": "Güçlü API'ler, makine öğrenimi modelleri, masaüstü uygulamaları ve oyunlar geliştirme konusunda uzman bir Full Stack Geliştiriciyim. Karmaşık problemleri çözmeyi ve fikirleri gerçeğe dönüştürmeyi seviyorum.",
+        "highlights": {
+            "experience": "Yıllık Deneyim",
+            "projects": "Tamamlanan Proje",
+            "technologies": "Teknoloji"
+        }
+    },
+    "projects": {
+        "title": "Öne Çıkan Projeler",
+        "subtitle": "Farklı teknolojilerdeki en iyi çalışmalarımdan bir seçki",
+        "viewCode": "Kodu Gör",
+        "viewLive": "Canlı Demo",
+        "technologies": "Kullanılan Teknolojiler"
+    },
+    "skills": {
+        "title": "Yetenekler & Teknolojiler",
+        "subtitle": "Kullandığım araçlar ve teknolojiler",
+        "categories": {
+            "languages": "Programlama Dilleri",
+            "frameworks": "Framework'ler",
+            "tools": "Araçlar & Platformlar",
+            "databases": "Veritabanları"
+        }
+    },
+    "contact": {
+        "title": "İletişime Geç",
+        "subtitle": "Aklınızda bir proje mi var? Birlikte çalışalım!",
+        "form": {
+            "name": "Adınız",
+            "email": "E-posta Adresiniz",
+            "message": "Mesajınız",
+            "send": "Mesaj Gönder",
+            "sending": "Gönderiliyor...",
+            "success": "Mesajınız başarıyla gönderildi!",
+            "error": "Mesaj gönderilemedi. Lütfen tekrar deneyin."
+        },
+        "info": {
+            "email": "E-posta",
+            "location": "Konum",
+            "social": "Sosyal Medya"
+        }
+    },
+    "footer": {
+        "copyright": "Tüm hakları saklıdır.",
+        "madeWith": "Sevgiyle yapıldı"
+    }
+}

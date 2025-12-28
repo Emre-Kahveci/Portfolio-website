@@ -1,0 +1,69 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "projects": "Projects",
+        "skills": "Skills",
+        "contact": "Contact"
+    },
+    "hero": {
+        "greeting": "Hi, I'm",
+        "name": "Emre Kahveci",
+        "title": "Full Stack Developer",
+        "subtitle": "I create elegant solutions with modern technologies. Specializing in .NET, Python, Machine Learning, and creating innovative applications.",
+        "cta": {
+            "projects": "View Projects",
+            "contact": "Get in Touch"
+        },
+        "scroll": "Scroll to explore"
+    },
+    "about": {
+        "title": "About Me",
+        "subtitle": "Passionate about creating impactful software solutions",
+        "description": "I'm a Full Stack Developer with expertise in building robust APIs, machine learning models, desktop applications, and games. I love tackling complex problems and turning ideas into reality.",
+        "highlights": {
+            "experience": "Years of Experience",
+            "projects": "Projects Completed",
+            "technologies": "Technologies"
+        }
+    },
+    "projects": {
+        "title": "Featured Projects",
+        "subtitle": "A selection of my best work across different technologies",
+        "viewCode": "View Code",
+        "viewLive": "Live Demo",
+        "technologies": "Technologies Used"
+    },
+    "skills": {
+        "title": "Skills & Technologies",
+        "subtitle": "The tools and technologies I work with",
+        "categories": {
+            "languages": "Languages",
+            "frameworks": "Frameworks",
+            "tools": "Tools & Platforms",
+            "databases": "Databases"
+        }
+    },
+    "contact": {
+        "title": "Get in Touch",
+        "subtitle": "Have a project in mind? Let's work together!",
+        "form": {
+            "name": "Your Name",
+            "email": "Your Email",
+            "message": "Your Message",
+            "send": "Send Message",
+            "sending": "Sending...",
+            "success": "Message sent successfully!",
+            "error": "Failed to send message. Please try again."
+        },
+        "info": {
+            "email": "Email",
+            "location": "Location",
+            "social": "Connect with me"
+        }
+    },
+    "footer": {
+        "copyright": "All rights reserved.",
+        "madeWith": "Made with"
+    }
+}

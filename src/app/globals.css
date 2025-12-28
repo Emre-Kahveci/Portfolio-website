@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Custom Properties for Design System */
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --muted: #64748b;
+  --muted-foreground: #94a3b8;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --border: #e2e8f0;
+  --ring: #0ea5e9;
+
+  /* Gradient colors */
+  --gradient-start: #0ea5e9;
+  --gradient-middle: #d946ef;
+  --gradient-end: #f97316;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --muted: #94a3b8;
+  --muted-foreground: #64748b;
+  --card: #1e293b;
+  --card-foreground: #f8fafc;
+  --border: #334155;
+  --ring: #38bdf8;
+
+  /* Gradient colors for dark mode */
+  --gradient-start: #38bdf8;
+  --gradient-middle: #e879f9;
+  --gradient-end: #fb923c;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Selection styling */
+::selection {
+  background-color: rgba(14, 165, 233, 0.3);
+  color: inherit;
+}
+
+.dark ::selection {
+  background-color: rgba(56, 189, 248, 0.3);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--gradient-start), var(--gradient-middle));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--gradient-middle), var(--gradient-end));
+}
+
+/* Utility classes */
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 via-accent-500 to-orange-500;
+  }
+
+  .select-text {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+  }
+
+  .bg-glass {
+    @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl;
+  }
+
+  .border-glass {
+    @apply border border-white/20 dark:border-slate-700/50;
+  }
+
+  .shadow-glass {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .hover-lift:hover {
+    @apply -translate-y-1;
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+
+  .gradient-border {
+    position: relative;
+    background: var(--card);
+    border-radius: 1rem;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-middle), var(--gradient-end));
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Section styles */
+@layer components {
+  .section {
+    @apply py-20 md:py-32 px-4 md:px-8;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6;
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto;
+  }
+
+  .card {
+    @apply bg-glass border-glass rounded-2xl p-6 shadow-glass hover-lift;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-primary-500 to-accent-500 text-white hover:from-primary-600 hover:to-accent-600 hover:shadow-lg hover:shadow-primary-500/25;
+  }
+
+  .btn-secondary {
+    @apply btn bg-glass border-glass hover:bg-white/80 dark:hover:bg-slate-800/80;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 bg-glass border-glass rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300;
+  }
+}
+
+/* Hero background animation */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(217, 70, 239, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(249, 115, 22, 0.1) 0%, transparent 50%);
+  animation: float 20s ease-in-out infinite;
+}
+
+.dark .hero-bg::before {
+  background:
+    radial-gradient(circle at 20% 80%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(232, 121, 249, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(251, 146, 60, 0.08) 0%, transparent 50%);
+}
+
+/* Floating particles effect */
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-middle));
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: float 10s ease-in-out infinite;
+}
+
+/* Tech badge style */
+.tech-badge {
+  @apply inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full bg-primary-500/10 text-primary-600 dark:text-primary-400 border border-primary-500/20;
+}
