@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState, FormEvent } from "react";
 
-// Replace with your actual Formspree form ID
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xqekljwv";
 
 const socialLinks = [
     {
@@ -39,7 +37,7 @@ const socialLinks = [
 ];
 
 export function Contact() {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -47,15 +45,20 @@ export function Contact() {
         name: "",
         email: "",
         message: "",
+        _gotcha: "", // Honeypot field for bot detection
     });
-    const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+    const [status, setStatus] = useState<"idle" | "sending" | "success" | "error" | "ratelimited">("idle");
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const isEnglish = i18n.language === "en";
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setStatus("sending");
+        setErrorMessage("");
 
         try {
-            const response = await fetch(FORMSPREE_ENDPOINT, {
+            const response = await fetch("/api/contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -63,16 +66,25 @@ export function Contact() {
                 body: JSON.stringify(formState),
             });
 
-            if (response.ok) {
+            const data = await response.json();
+
+            if (response.status === 429) {
+                // Rate limited
+                setStatus("ratelimited");
+                setErrorMessage(isEnglish ? data.error : data.errorTr);
+                setTimeout(() => setStatus("idle"), 10000);
+            } else if (response.ok) {
                 setStatus("success");
-                setFormState({ name: "", email: "", message: "" });
+                setFormState({ name: "", email: "", message: "", _gotcha: "" });
                 setTimeout(() => setStatus("idle"), 5000);
             } else {
                 setStatus("error");
+                setErrorMessage(isEnglish ? data.error : data.errorTr);
                 setTimeout(() => setStatus("idle"), 5000);
             }
         } catch {
             setStatus("error");
+            setErrorMessage(isEnglish ? "Failed to send message" : "Mesaj gönderilemedi");
             setTimeout(() => setStatus("idle"), 5000);
         }
     };
@@ -147,9 +159,20 @@ export function Contact() {
                                 />
                             </div>
 
+                            {/* Honeypot field - hidden from users, catches bots */}
+                            <input
+                                type="text"
+                                name="_gotcha"
+                                value={formState._gotcha}
+                                onChange={(e) => setFormState({ ...formState, _gotcha: e.target.value })}
+                                style={{ display: "none" }}
+                                tabIndex={-1}
+                                autoComplete="off"
+                            />
+
                             <motion.button
                                 type="submit"
-                                disabled={status === "sending"}
+                                disabled={status === "sending" || status === "ratelimited"}
                                 className="btn-primary w-full"
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
@@ -188,7 +211,16 @@ export function Contact() {
                                     animate={{ opacity: 1, y: 0 }}
                                     className="text-red-600 dark:text-red-400 text-center font-medium"
                                 >
-                                    ✕ {t("contact.form.error")}
+                                    ✕ {errorMessage || t("contact.form.error")}
+                                </motion.p>
+                            )}
+                            {status === "ratelimited" && (
+                                <motion.p
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="text-orange-600 dark:text-orange-400 text-center font-medium"
+                                >
+                                    ⏳ {errorMessage}
                                 </motion.p>
                             )}
                         </form>
