@@ -32,7 +32,9 @@
         "subtitle": "A selection of my best work across different technologies",
         "viewCode": "View Code",
         "viewLive": "Live Demo",
-        "technologies": "Technologies Used"
+        "technologies": "Technologies Used",
+        "privateTitle": "Private Projects",
+        "privateSubtitle": "Projects with non-shareable source code due to commercial or confidentiality reasons"
     },
     "skills": {
         "title": "Skills & Technologies",

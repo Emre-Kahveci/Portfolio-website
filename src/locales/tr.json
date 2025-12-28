@@ -32,7 +32,9 @@
         "subtitle": "Farklı teknolojilerdeki en iyi çalışmalarımdan bir seçki",
         "viewCode": "Kodu Gör",
         "viewLive": "Canlı Demo",
-        "technologies": "Kullanılan Teknolojiler"
+        "technologies": "Kullanılan Teknolojiler",
+        "privateTitle": "Kodu Paylaşılamayan Projeler",
+        "privateSubtitle": "Ticari veya gizlilik nedeniyle kaynak kodu paylaşılamayan projeler"
     },
     "skills": {
         "title": "Yetenekler & Teknolojiler",
